@@ -1,28 +1,52 @@
 import React from 'react';
 // @ts-ignore
 import { Link, Outlet } from 'umi';
+import styles from './index.less';
+import Icon,{ HomeOutlined ,ProfileOutlined,SettingOutlined,MailOutlined} from '@ant-design/icons';
+import { Input ,Button,Badge } from 'antd';
+import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
+import Heads  from "@/layouts/Head";
+// animate-spin
+const HeadsIcon =(props: Partial<CustomIconComponentProps>) =>(<Icon component={Heads} style={{height:'2em',width:'2em'}}{...props}></Icon>)
 
 export default function Layout() {
+    const { Search } = Input;
+    const onSearch = (val:string) => {
+        console.log('search',val)
+    }
   return (
-    <div className="relative">
-      <div
-        className="fixed w-72 bottom-8 right-8 py-4 z-50 flex transition-all
-        justify-end flex-col p-4 bg-white shadow hover:shadow-xl rounded">
-        <p className="text-right text-xs">
-          这个博客是使用 <a href="https://next.umijs.org/zh-CN">Umi.js 框架</a><br />
-          搭配 <a href="https://planetscale.com/">PlanetScale</a> + <a
-          href="https://www.prisma.io/">Prisma </a>+
-          <a href="https://tailwindcss.com/">Tailwindcss</a> <br />
-          并且部署在 <a href="https://vercel.com/">Vercel</a> 的一个示例！
-        </p>
-        <p className="text-right mt-2">
-          <a className="text-xs"
-             href="https://next.umijs.org/zh-CN/docs/tutorials/blog">
-            马上自己做一个 ➡️
-          </a>
-        </p>
-      </div>
+    <div>
+        <div className={styles.layoutHeader} >
+            <div className={styles.layoutHeader_left}>
+                <Search  style={{ width: 350 }} placeholder="查找文章" onSearch={onSearch} enterButton  />
+            </div>
+            <div  className={styles.layoutHeader_right}>
+                <HeadsIcon className='text-3xl'></HeadsIcon>
+                <Button className={styles.layoutHeader_right_button}>
+                    <ProfileOutlined className='text-2xl' />
+                    <div className='text-sm'>文章列表</div>
+                </Button>
+                <Button className={styles.layoutHeader_right_button}>
+                    <Badge count={10}>
+                    <MailOutlined className='text-2xl' />
+                    </Badge>
+                    <div className='text-sm'>消息</div>
+                </Button>
+                {/*<MailOutlined />*/}
+                <Button className={styles.layoutHeader_right_button}>
+                    <SettingOutlined className='text-2xl' />
+                    <div className='text-sm'>设置</div>
+                </Button>
+                <Button className={styles.layoutHeader_right_button}>
+                    <HomeOutlined  className='text-2xl'></HomeOutlined>
+                    <div className='text-sm'>主页</div>
+                </Button>
+            </div>
+
+        </div>
+        <div className={styles.layoutContent}>
       <Outlet />
+        </div>
     </div>
-  );
+  )
 }

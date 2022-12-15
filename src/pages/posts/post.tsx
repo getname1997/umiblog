@@ -7,17 +7,17 @@ export default function PostPage() {
   const [post, setPost] = useState<any>()
 
   async function refresh() {
-    try {
-      const res = await fetch('/api/posts/' + params.postId)
-      const post = await res.json()
-      if (res.status === 200) {
-        setPost(post)
-      } else {
-        setPost(null);
-      }
-    } catch (err) {
-      console.error(err);
-    }
+    // try {
+    //   const res = await fetch('/api/posts/' + params.postId)
+    //   const post = await res.json()
+    //   if (res.status === 200) {
+    //     setPost(post)
+    //   } else {
+    //     setPost(null);
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    // }
   }
 
   useEffect(() => {
