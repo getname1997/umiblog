@@ -7,6 +7,11 @@
     "prepare": "husky install",
     "start": "npm run dev"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,less}": [
+      "umi lint"
+    ]
+  },
   "dependencies": {
     "@prisma/client": "^3.10.0",
     "@umijs/plugins": "4.0.0-canary.20220316.1",
