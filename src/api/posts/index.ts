@@ -1,9 +1,9 @@
-import { UmiApiRequest, UmiApiResponse } from "umi";
-import { PrismaClient } from '@prisma/client'
-import { verifyToken } from "@/utils/jwt";
+import type { UmiApiRequest, UmiApiResponse } from "umi";
+// import { PrismaClient } from '@prisma/client'
+// import { verifyToken } from "@/utils/jwt";
 
 export default async function (req: UmiApiRequest, res: UmiApiResponse) {
-  let prisma: PrismaClient;
+  // let prisma: PrismaClient;
   switch (req.method) {
     case 'GET':
       res.status(200).json();
