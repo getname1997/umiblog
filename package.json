@@ -19,11 +19,6 @@
     "package.json": [
       "prettier --write"
     ],
-    "*.vue": [
-      "eslint --fix",
-      "prettier --write",
-      "stylelint --write"
-    ],
     "*.{scss,less,styl,html}": [
       "stylelint --write",
       "prettier --write"
