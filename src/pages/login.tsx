@@ -35,7 +35,7 @@ export default function () {
         <div className="mt-8">
           <p>邮箱</p>
           <TextInput value={email} onChange={setEmail} />
-          <p className="mt-4">密码</p>
+          <p className="mt-4">密码7</p>
           <TextInput value={password} onChange={setPassword} />
           <Button onClick={submit}>登入</Button>
         </div>
