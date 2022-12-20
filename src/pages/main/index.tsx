@@ -15,7 +15,7 @@ const main: React.FC = (props: PropsWithChildren<any>, context) => {
       <Sider width={300}>
         <HeadsIcon className="text-3xl" />
       </Sider>
-      <Content>祖业</Content>
+      <Content>祖业s</Content>
     </Layout>
   );
 };
