@@ -12,10 +12,17 @@ const main: React.FC = (props: PropsWithChildren<any>, context) => {
   console.log(props, context);
   return (
     <Layout style={{ height: '100%' }}>
-      <Sider width={300}>
-        <HeadsIcon className="text-3xl" />
+      <Sider
+        width={300}
+        className="rounded-md"
+        style={{ backgroundColor: 'var(--layoutHeaderBackground)' }}
+      >
+        <div className="text-center mt-3">
+          <HeadsIcon className="text-7xl" />
+          <div>正在坐着绿皮火车寻找目标。。。</div>
+        </div>
       </Sider>
-      <Content>祖业s</Content>
+      <Content />
     </Layout>
   );
 };
