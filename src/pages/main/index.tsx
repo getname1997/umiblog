@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 const { Sider, Content } = Layout;
 import styles from './index.less';
 import { dataList } from './data';
-import server from '../../request/server';
+import server from '@/request/server';
 const HeadsIcon = (props: Partial<CustomIconComponentProps>) => (
   <Icon component={Heads} style={{ height: '2em', width: '2em' }} {...props} />
 );
