@@ -6,21 +6,22 @@ import type { PropsWithChildren } from 'react';
 import React, { useState, useEffect } from 'react';
 const { Sider, Content } = Layout;
 import styles from './index.less';
-import { dataList } from '@/pages/main/data';
-// http://bjb.yunwj.top/php/60miao/qq.php
-import server from '@/request/server';
+import { dataList } from './data';
+import server from '../../request/server';
 const HeadsIcon = (props: Partial<CustomIconComponentProps>) => (
   <Icon component={Heads} style={{ height: '2em', width: '2em' }} {...props} />
 );
 const Main: React.FC = (props: PropsWithChildren<any>, context) => {
   console.log(props, context);
 
-  const [morningNewPaper, setMorningNewPaper] = useState(dataList);
+  const [morningNewPaper, setMorningNewPaper] = useState([...dataList]);
   useEffect(() => {
-    server('http://bjb.yunwj.top/php/60miao/qq.php').then((res) => {
-      console.log(res, '55555555555');
-      setMorningNewPaper(res.wb);
-    });
+    server('http://bjb.yunwj.top/php/60miao/qq.php').then(
+      (res: { wb: React.SetStateAction<string[][]> }) => {
+        console.log(res, '55555555555');
+        setMorningNewPaper(res.wb);
+      },
+    );
   }, []);
   return (
     <Layout style={{ height: '100%' }}>
