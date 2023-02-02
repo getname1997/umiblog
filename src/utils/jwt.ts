@@ -8,8 +8,8 @@ export function signToken(id: number) {
     jwt.sign({ id }, secret, {}, (err, token) => {
       if (err || !token) return reject(err);
       resolve(token);
-    })
-  })
+    });
+  });
 }
 
 export function verifyToken(token: string) {
@@ -18,6 +18,6 @@ export function verifyToken(token: string) {
     jwt.verify(token, secret, (err, payload) => {
       if (err || !payload || !payload) return reject(err);
       resolve(payload as { id: number });
-    })
-  })
+    });
+  });
 }
