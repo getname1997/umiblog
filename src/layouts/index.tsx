@@ -9,6 +9,8 @@ import Icon, {
   MailOutlined,
 } from '@ant-design/icons';
 import { Input, Button, Badge } from 'antd';
+// @ts-ignore
+import { history } from 'umi';
 import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
 import Heads from '@/layouts/Head';
 // animate-spin
@@ -29,7 +31,10 @@ export default function Layout() {
         </div>
         <div className={styles.layoutHeader_right}>
           <HeadsIcon className="text-3xl" />
-          <Button className={styles.layoutHeader_right_button}>
+          <Button
+            onClick={() => history.push('/posts/blogList')}
+            className={styles.layoutHeader_right_button}
+          >
             <ProfileOutlined className="text-2xl" />
             <div className="text-sm">文章列表</div>
           </Button>
@@ -44,7 +49,7 @@ export default function Layout() {
             <SettingOutlined className="text-2xl" />
             <div className="text-sm">设置</div>
           </Button>
-          <Button className={styles.layoutHeader_right_button}>
+          <Button onClick={() => history.push('/')} className={styles.layoutHeader_right_button}>
             <HomeOutlined className="text-2xl" />
             <div className="text-sm">主页</div>
           </Button>

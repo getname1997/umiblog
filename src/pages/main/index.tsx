@@ -8,20 +8,19 @@ const { Sider, Content } = Layout;
 import styles from './index.less';
 import { dataList } from './data';
 import server from '@/request/server';
+import api from '@/request/api';
 const HeadsIcon = (props: Partial<CustomIconComponentProps>) => (
   <Icon component={Heads} style={{ height: '2em', width: '2em' }} {...props} />
 );
 const Main: React.FC = (props: PropsWithChildren<any>, context) => {
   console.log(props, context);
-
+  const [thumb_url, setThumb_url] = useState('');
   const [morningNewPaper, setMorningNewPaper] = useState([...dataList]);
   useEffect(() => {
-    server('http://bjb.yunwj.top/php/60miao/qq.php').then(
-      (res: { wb: React.SetStateAction<string[][]> }) => {
-        console.log(res, '55555555555');
-        setMorningNewPaper(res.wb);
-      },
-    );
+    server(api.dailyList).then((res) => {
+      setThumb_url(res.data.thumb_url);
+      setMorningNewPaper(JSON.parse(res.data.daily));
+    });
   }, []);
   return (
     <Layout style={{ height: '100%' }}>
@@ -31,8 +30,9 @@ const Main: React.FC = (props: PropsWithChildren<any>, context) => {
         style={{ backgroundColor: 'var(--layoutHeaderBackground)' }}
       >
         <div className="text-center mt-3">
+          <img src={thumb_url} alt="" className={styles.main_img} />
           <HeadsIcon className="text-7xl" />
-          <div className={styles.main_text}>正在坐着绿皮火车寻找着人生目标。。。</div>
+          <div className={styles.main_text}>正在坐着绿皮火车追寻着人生目标。。。</div>
         </div>
       </Sider>
       <Content>

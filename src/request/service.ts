@@ -4,7 +4,7 @@ import commonStorage from '@/utils/commonStorage';
 // import server from '@/request/server';
 // import api from '@/request/api';
 const service = axios.create({
-  baseURL: '',
+  baseURL: '/api',
   timeout: 20000,
   headers: { 'Content-Type': 'application/json' },
 });
@@ -32,8 +32,6 @@ service.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
-    }
     return Promise.reject(error);
   },
 );

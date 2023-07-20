@@ -1,18 +1,19 @@
-interface apiType {
-  [name: string]: string;
-}
 /* 存放api */
-const planApi: apiType = {};
-const login: apiType = {};
+const login = {};
 
-const Common: apiType = {};
-const enumUrl: apiType = {};
+const Daily = {
+  dailyList: '/dailyList',
+};
 
-const api: apiType = {
-  ...Common,
-  ...planApi,
+// 博客博客
+const Blog = {
+  getBlogList: '/posts/findAll',
+};
+
+const api = {
   ...login,
-  ...enumUrl,
+  ...Daily,
+  ...Blog,
 };
 
 export default api;
