@@ -1,12 +1,29 @@
-import React from 'react';
-// import server from "@/request/server";
-// import api from "@/request/api";
+import React, { useState, useEffect } from 'react';
+import server from '@/request/server';
+import api from '@/request/api';
 
-// const getBlogList = () => {
-//     let data = server(api.getBlogList);
-// }
 const BlogList: React.FC = () => {
-  return <div>博客列表页</div>;
+  const [blogList, setBlogList] = useState([]);
+  const getBlogList = async () => {
+    const { data } = await server(api.getBlogList);
+    setBlogList(data.list);
+  };
+  useEffect(() => {
+    getBlogList();
+  }, []);
+  return (
+    <>
+      {blogList.length > 0 &&
+        blogList.map((item: any) => {
+          return (
+            <div key={item.id}>
+              <div>名称:{item.title}</div>
+              <div>内容：{item.content}</div>
+            </div>
+          );
+        })}
+    </>
+  );
 };
 
 export default BlogList;
