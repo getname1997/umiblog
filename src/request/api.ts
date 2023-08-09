@@ -1,5 +1,7 @@
 /* 存放api */
-const login = {};
+const login = {
+  login: '/auth/login',
+};
 
 const Daily = {
   dailyList: '/dailyList',

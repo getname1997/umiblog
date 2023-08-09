@@ -1,8 +1,8 @@
 import type { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 import axios from 'axios';
 import commonStorage from '@/utils/commonStorage';
-// import server from '@/request/server';
-// import api from '@/request/api';
+// @ts-ignore
+import { history } from 'umi';
 const service = axios.create({
   baseURL: '/api',
   timeout: 20000,
@@ -16,6 +16,7 @@ service.interceptors.request.use(
       (config.headers as AxiosRequestHeaders).Authorization = commonStorage.get('token') as string;
     } else {
       // 返回登入页 + 报错
+      history.push('/login');
     }
     return config;
   },

@@ -18,7 +18,7 @@ export default {
   tailwindcss: {},
   proxy: {
     '/api': {
-      target: 'http://192.168.100.168:8090',
+      target: 'http://175.24.115.95:8090/',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

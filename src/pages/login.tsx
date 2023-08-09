@@ -3,26 +3,21 @@ import React, { useState } from 'react';
 import { history } from 'umi';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
-
+import commonStorage from '../utils/commonStorage';
+import server from '@/request/server';
+import api from '@/request/api';
 export default function () {
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   async function submit() {
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (res.status !== 200) {
-        console.error(await res.text());
+      const res = await server(api.login, { username, password }, 'post');
+      if (res.code !== 200) {
+        console.error(res, '登录失败');
         return;
       }
-      const data = await res.json();
-      alert(`欢迎回来，${data.name}`);
-      history.push('/posts/create');
+      commonStorage.set('token', 'Bearer  ' + res.data.token);
+      history.push('/');
     } catch (err) {
       console.error(err);
     }
@@ -33,8 +28,8 @@ export default function () {
       <div className="container lg:px-64 px-8 pt-16">
         <p className="text-3xl font-extrabold">用户登入</p>
         <div className="mt-8">
-          <p>邮箱</p>
-          <TextInput value={email} onChange={setEmail} />
+          <p>账号</p>
+          <TextInput value={username} onChange={setUsername} />
           <p className="mt-4">密码</p>
           <TextInput value={password} onChange={setPassword} />
           <Button onClick={submit}>登入</Button>
